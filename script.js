@@ -12,12 +12,13 @@ let food = {
     y: Math.floor(Math.random() * 15 + 1) * box
 };
 
-
 let start = document.getElementById("start");
 start.addEventListener("click", loadTry);
 
 function loadTry() {
     let invisible = document.getElementById("divCanvas");
+    //let score = document.getElementById("score");
+    //score.style.display = "block"
     start.remove(start);
     invisible.style.display = "block";
     let game = setInterval(startGame, 100);
@@ -49,6 +50,22 @@ function update(event) {
     if(event.keyCode == 40 && direction != "up") direction = "down";
 }
 
+/*
+
+let count = 100;
+
+function countScore() {
+    count += 10;
+    score.textContent = "Score: " + count;
+} 
+
+function subtractScore() {
+    count -= 1;
+    score.textContent = "Score: " + count;
+}
+
+*/
+
 function startGame() {
     createBG();
     createSnake();
@@ -64,9 +81,11 @@ function startGame() {
 
     if(snakeX != food.x || snakeY != food.y) {
         bodySnake.pop();
+        // subtractScore();
     } else {
         food.x = Math.floor(Math.random() * 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
+        // countScore();
     }
 
     let newHead = {
