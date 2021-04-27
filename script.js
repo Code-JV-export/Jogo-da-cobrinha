@@ -12,16 +12,19 @@ let food = {
     y: Math.floor(Math.random() * 15 + 1) * box
 };
 
+let game;
+let invisible;
+
 let start = document.getElementById("start");
 start.addEventListener("click", loadTry);
 
 function loadTry() {
-    let invisible = document.getElementById("divCanvas");
+    invisible = document.getElementById("divCanvas");
     //let score = document.getElementById("score");
     //score.style.display = "block"
     start.remove(start);
     invisible.style.display = "block";
-    let game = setInterval(startGame, 100);
+    game = setInterval(startGame, 100);
 }
 
 function createBG() {
@@ -67,6 +70,19 @@ function subtractScore() {
 */
 
 function startGame() {
+
+    if(bodySnake[0].x > 15 * box && direction != "left") bodySnake[0].x = 0;
+    if(bodySnake[0].x < 0 && direction != "right") bodySnake[0].x = 15 * box;
+    if(bodySnake[0].y > 15 * box && direction != "up") bodySnake[0].y = 0;
+    if(bodySnake[0].y < 0 && direction != "down") bodySnake[0].y = 15 * box;
+
+    for(i = 1; i < bodySnake.length; i++) {
+        if(bodySnake[0].x == bodySnake[i].x && bodySnake[0].y == bodySnake[i].y) {
+            clearInterval(game);
+            endGame();
+        }
+    }
+
     createBG();
     createSnake();
     drawFood();
@@ -96,5 +112,10 @@ function startGame() {
     bodySnake.unshift(newHead);
 
 
+}
+
+function endGame(){
+    invisible.remove(invisible);
+    alert("Game over :(");
 }
 
