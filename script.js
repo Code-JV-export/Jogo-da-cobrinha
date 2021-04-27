@@ -40,10 +40,36 @@ function drawFood() {
     context.fillRect(food.x, food.y, box, box);
 }
 
+
+
 function startGame() {
     createBG();
     createSnake();
     drawFood();
+
+    let snakeX = bodySnake[0].x;
+    let snakeY = bodySnake[0].y;
+
+    if(direction == "right") snakeX += box;
+    if(direction == "left") snakeX -= box;
+    if(direction == "up") snakeY -= box;
+    if(direction == "down") snakeY += box;
+
+    if(snakeX != food.x || snakeY != food.y) {
+        bodySnake.pop();
+    } else {
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    };
+
+    bodySnake.unshift(newHead);
+
+
 }
 
-var game = setInterval(startGame, 100);
+let game = setInterval(startGame, 100);
