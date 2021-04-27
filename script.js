@@ -1,15 +1,26 @@
 let canvasGame = document.getElementById("snake");
 let context = canvasGame.getContext("2d");
-
 let box = 32;
+let bodySnake = [];
+bodySnake[0] = {
+    x: 8 * box,
+    y: 8 * box
+};
+let direction = "right"
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+};
+
 
 let start = document.getElementById("start");
-start.addEventListener("click", startGame);
+start.addEventListener("click", loadTry);
 
-function startGame() {
-    let game = setInterval(createBG, 100);
+function loadTry() {
+    let invisible = document.getElementById("divCanvas");
     start.remove(start);
-    canvasGame.style.display = "block";
+    invisible.style.display = "block";
+    
 }
 
 function createBG() {
@@ -17,3 +28,22 @@ function createBG() {
     context.fillRect(0, 0, 16 * box, 16 * box);
 }
 
+function createSnake() {
+    for(i = 0; i < bodySnake.length; i++) {
+        context.fillStyle = "green";
+        context.fillRect(bodySnake[i].x, bodySnake[i].y, box, box);
+    }
+}
+
+function drawFood() {
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
+}
+
+function startGame() {
+    createBG();
+    createSnake();
+    drawFood();
+}
+
+var game = setInterval(startGame, 100);

@@ -8,7 +8,7 @@ body {
     color: rgb(44, 139, 44);
 }
 
-#snake {
+#divCanvas {
     display: none;
     transition-duration: 0.4s;
 }
