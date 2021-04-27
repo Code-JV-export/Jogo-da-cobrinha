@@ -1,0 +1,41 @@
+body {
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(44, 139, 44);
+}
+
+#snake {
+    display: none;
+    transition-duration: 0.4s;
+}
+
+.header-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    text-decoration: none;
+    padding: 15px 42px;
+    text-align: center;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.initial:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
